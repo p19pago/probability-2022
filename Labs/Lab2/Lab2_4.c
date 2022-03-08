@@ -4,7 +4,7 @@
 
 int main(int argc, char** argv){
 	
-	srand(time(NULL));
+	srand(80);
 	int i=0, result=0;
 	
 	int h = 0; /* counter for Heads */
