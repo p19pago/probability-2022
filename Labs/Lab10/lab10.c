@@ -27,20 +27,25 @@ int s500;
 int s1000;
 
 // variables for subquery 3
-
-int h = 0; // counter for Heads
-int t = 0; // counter for Tails
-int r; //expected result for heads/tails experiment
-int k; //counter for third loop
-
-int pos_h; //position for Heads
-int pos_t; //position for Tails
-
 // variance - mean
-double m; //variable for mean
-double v; //variable for variance
-int sum = 0;
-double sqdiff = 0;
+
+//position 1
+double mn1; //variable for mean
+double var1; //variable for variance
+int sum1 = 0;
+double sqdiff1 = 0;
+
+//position 2
+double mn2; //variable for mean
+double var2; //variable for variance
+int sum2 = 0;
+double sqdiff2 = 0;
+
+//generic (attached to variables off previous positions)
+double mn; //mean
+double var; //variance
+int sum;
+double sqdiff;
 
 //frequency tables
 int d10[1000]={0};
@@ -81,10 +86,8 @@ int main(int argc, char** argv){
 
 			printf("%d\n", s1);
 			fprintf(fp1, "%d\n", pos1);
-		}
-		
+		}	
 	}
-	
 	
 	//10 walkers - separate loop
 	//writing into a .txt file for 10 walkers
@@ -114,6 +117,9 @@ int main(int argc, char** argv){
 	//50 walkers - separate loop
 	//writing into a .txt file for 50 walkers
 	
+	FILE *fp50;
+	fp50 = fopen("walkers50.txt", "w");
+	
 	for (i<0; i<=1000; i++){
 		x = rand()%2;
 		s50 = rw[x];
@@ -124,21 +130,20 @@ int main(int argc, char** argv){
 		if (x==0){
 			s50 = s50 - 1;
 		}
+		printf("%d", s50);
 		
 		d50[s50]++;
 		c50++;
+		
+		fprintf(fp50, "%d\n", d50[s50]);
+		fprintf(fp50, "%d\n", c50);
 	}
 	
-	printf("%d", c50);
-	
-	
-	FILE *fp50;
-	fp50 = fopen("walkers50.txt", "w");
-	fprintf(fp50, "%d\n", d50[s50]);
-	fprintf(fp50, "%d\n", c50);
-	
 	//100 walkers - separate loop
-	c100 = 0;
+	//writing into a .txt file for 100 walkers
+	
+	FILE *fp100;
+	fp100 = fopen("walkers100.txt", "w");
 	
 	for (i<0; i<=1000; i++){
 		x = rand()%2;
@@ -150,21 +155,20 @@ int main(int argc, char** argv){
 		if (x==0){
 			s100 = s100 - 1;
 		}
+		printf("%d", s100);
 		
 		d100[s100]++;
 		c100++;
+		
+		fprintf(fp100, "%d\n", d100[s100]);
+		fprintf(fp100, "%d\n", c100);
 	}
 	
-	printf("%d", c100);
-	//writing into a .txt file for 100 walkers
-	
-	FILE *fp100;
-	fp100 = fopen("walkers100.txt", "w");
-	fprintf(fp100, "%d\n", d100[s100]);
-	fprintf(fp100, "%d\n", c100);
-	
 	//500 walkers - separate loop
-	c500 = 0;
+	//writing into a .txt file for 500 walkers
+	
+	FILE *fp500;
+	fp500 = fopen("walkers500.txt", "w");
 	
 	for (i<0; i<=1000; i++){
 		x = rand()%2;
@@ -172,26 +176,24 @@ int main(int argc, char** argv){
 		
 		if (x==1){
 			s500 = s500 + 1;
-			c500++;
 		}
 		if (x==0){
 			s500 = s500 - 1;
-			c500++;
 		}
+		printf("%d", s500);
 		
 		d500[s500]++;
+		c500++;
+		
+		fprintf(fp500, "%d\n", d500[s500]);
+		fprintf(fp500, "%d\n", c500);	
 	}
 	
-	printf("%d", c500);
-	//writing into a .txt file for 500 walkers
-	
-	FILE *fp500;
-	fp500 = fopen("walkers500.txt", "w");
-	fprintf(fp500, "%d\n", d500[s500]);
-	fprintf(fp500, "%d\n", c500);
-	
 	//1000 walkers - separate loop
-	c1000 = 0;
+	//writing into a .txt file for 1000 walkers
+	
+	FILE *fp1000;
+	fp1000 = fopen("walkers1000.txt", "w");
 	
 	for (i<0; i<=1000; i++){
 		x = rand()%2;
@@ -203,51 +205,96 @@ int main(int argc, char** argv){
 		if (x==0){
 			s1000 = s1000 - 1;
 		}
+		printf("%d", s1000);
 		
 		d1000[s1000]++;
 		c1000++;
+		
+		fprintf(fp1000, "%d\n", d1000[s1000]);
+		fprintf(fp1000, "%d\n", c1000);
 	}
 	
-	printf("%d", c1000);
-	//writing into a .txt file for 1000 walkers
-	
-	FILE *fp1000;
-	fp1000 = fopen("walkers1000.txt", "w");
-	fprintf(fp1000, "%d\n", d1000[s1000]);
-	fprintf(fp1000, "%d\n", c1000);
-	
 	//subquery 2
-	for(i=0; i<=1000; i++){
+	
+	//writing into a different .txt file for position 2.
+	FILE *fp2;
+	fp2 = fopen("walkers2_lab10.txt", "w");
+	
+	//writing into a different .txt file for both positions 1 and 2.
+	FILE *fp;
+	fp = fopen("walkers_lab10.txt", "w");
+	
+	for(j=0; j<=1000; j++){
 		x = rand()%1000+1;
 		printf("Random number result is: %d\n", x);
 		
 		if(x>5){
-
 			pos1 = x + 1;
 			s2 = rw[pos2];
-
+			
 			printf("%d\n", s2);
-
+			fprintf(fp2, "%d\n", pos2);
 		}
 
 		if(x<5){
-
 			pos1 = x - 1;
 			s2 = rw[pos2];
 
 			printf("%d\n", s2);
-
-		}
-		
-		FILE *fp2;
-		fp2 = fopen("walkers2_lab10.txt", "w");
-		fprintf(fp2, "%d\n", pos2);
-		
-		FILE *fp;
-		fp = fopen("walkers_lab10.txt", "w");
-		fprintf(fp, "%d\n", pos1);
-		fprintf(fp, "%d\n", pos2);
+			fprintf(fp2, "%d\n", pos2);
+		}	
 	}
+	
+	fprintf(fp, "%d\n", pos1);
+	fprintf(fp, "%d\n", pos2);
+	
+	//subquery 3
+	//for both positions -- not heads-or tails values
+	
+	for(i=1; i<=1000; i++){
+
+		x = rand()%1000+1;
+		printf("Random number result is: %d\n", x);
+
+		// variance - mean
+		// 1. variance
+		
+		//for position 1
+		sum1 = sum1 + pos1;
+		sqdiff1 = sqdiff1 + (pos1 - mn1) * (pos1 + mn1);
+		var1 = sqdiff1/i;
+		printf("%f\n", var1);
+
+		//for position 2
+		sum2 = sum2 + pos2;
+		sqdiff2 = sqdiff2 + (pos2 - mn2) * (pos2 + mn2);
+		var2 = sqdiff/i;
+		printf("%f\n", var2);
+
+		// 2. mean
+		
+		//for position 1
+		sum1 = sum1 + pos1;
+		mn1 = sum1/i;
+		printf("%f\n", mn1);
+
+		//for position 2
+		sum2 = sum2 + pos2;
+		mn2 = sum2/i;
+		printf("%f\n", mn2);
+	}
+	
+	//generic
+	
+	sum = sum1 + sum2;
+	sqdiff = sqdiff1 - sqdiff2;
+	var = sqdiff/1000;
+	mn = sum/1000;
+	
+	printf("%d\n", sum);
+	printf("%f\n", sqdiff);
+	printf("%f\n", var);
+	printf("%f\n", mn);
 	
 	return 0;
 }
