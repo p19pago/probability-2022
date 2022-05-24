@@ -110,9 +110,10 @@ int main(int argc, char** argv){
 		d10[s10]++;
 		c10++;
 		
-		fprintf(fp10, "%d\n", d10[s10]);
-		fprintf(fp10, "%d\n", c10);
 	}
+	
+	fprintf(fp10, "%d\n", d10[s10]);
+	fprintf(fp10, "%d\n", c10);
 	
 	//50 walkers - separate loop
 	//writing into a .txt file for 50 walkers
@@ -135,9 +136,11 @@ int main(int argc, char** argv){
 		d50[s50]++;
 		c50++;
 		
-		fprintf(fp50, "%d\n", d50[s50]);
-		fprintf(fp50, "%d\n", c50);
+		
 	}
+	
+	fprintf(fp50, "%d\n", d50[s50]);
+	fprintf(fp50, "%d\n", c50);
 	
 	//100 walkers - separate loop
 	//writing into a .txt file for 100 walkers
@@ -160,9 +163,10 @@ int main(int argc, char** argv){
 		d100[s100]++;
 		c100++;
 		
-		fprintf(fp100, "%d\n", d100[s100]);
-		fprintf(fp100, "%d\n", c100);
 	}
+	
+	fprintf(fp100, "%d\n", d100[s100]);
+	fprintf(fp100, "%d\n", c100);
 	
 	//500 walkers - separate loop
 	//writing into a .txt file for 500 walkers
@@ -185,10 +189,11 @@ int main(int argc, char** argv){
 		d500[s500]++;
 		c500++;
 		
-		fprintf(fp500, "%d\n", d500[s500]);
-		fprintf(fp500, "%d\n", c500);	
 	}
 	
+	fprintf(fp500, "%d\n", d500[s500]);
+	fprintf(fp500, "%d\n", c500);
+		
 	//1000 walkers - separate loop
 	//writing into a .txt file for 1000 walkers
 	
@@ -210,9 +215,10 @@ int main(int argc, char** argv){
 		d1000[s1000]++;
 		c1000++;
 		
-		fprintf(fp1000, "%d\n", d1000[s1000]);
-		fprintf(fp1000, "%d\n", c1000);
 	}
+	
+	fprintf(fp1000, "%d\n", d1000[s1000]);
+	fprintf(fp1000, "%d\n", c1000);
 	
 	//subquery 2
 	
