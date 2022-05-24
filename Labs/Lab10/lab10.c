@@ -261,12 +261,14 @@ int main(int argc, char** argv){
 		
 		//for position 1
 		sum1 = sum1 + pos1;
+		
 		sqdiff1 = sqdiff1 + (pos1 - mn1) * (pos1 + mn1);
 		var1 = sqdiff1/1000;
 		printf("%f\n", var1);
 
 		//for position 2
 		sum2 = sum2 + pos2;
+		
 		sqdiff2 = sqdiff2 + (pos2 - mn2) * (pos2 + mn2);
 		var2 = sqdiff/1000;
 		printf("%f\n", var2);
@@ -274,14 +276,13 @@ int main(int argc, char** argv){
 		// 2. mean
 		
 		//for position 1
-		sum1 = sum1 + pos1;
 		mn1 = sum1/1000;
 		printf("%f\n", mn1);
-
+	
 		//for position 2
-		sum2 = sum2 + pos2;
 		mn2 = sum2/1000;
 		printf("%f\n", mn2);
+		
 	}
 	
 	//generic
