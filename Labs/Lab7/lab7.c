@@ -115,62 +115,47 @@ int main(int argc, char** argv){
 		r = rand()%10 +1;
 		printf("Random integer number: %d\n", r);
 
-		if(r>5){
+		if(r>7){
 
 			pos_h = r + 1;
 			s3 = rw[pos_h];
 
 			printf("%d\n", s3);
 			h++;
+			
+			printf("%d\n", pos_h);
 		}
-
-		printf("%d\n", pos_h);
-
-		if(r<5){
+		else{ // r<7
 
 			pos_t = r - 1;
 			s4 = rw[pos_t];
 
 			printf("%d\n", s4);
 			t++;
+			
+			printf("%d\n", pos_t);
 		}
+	}
+	
+	// variance - mean for single position
 
-		printf("%d\n", pos_t);
-
-		// variance - mean
-
+	for(i=0; i<=10; i++){
+		
 		// 1. variance
+		
+		sum = sum + pos1;
+		sqdiff = sqdiff + (pos1 - m) * (pos1 - m);
 
-		// for heads
-
-		sum = sum + pos_h;
-		sqdiff = sqdiff + (pos_h - m) * (pos_h - m);
-
-		v = sqdiff/k;
-
-		printf("%f\n", v);
-
-		// for tails
-
-		sum = sum + pos_t;
-		sqdiff = sqdiff + (pos_t - m) * (pos_t - m);
-
-		v = sqdiff/k;
+		v = sqdiff/10;
 
 		printf("%f\n", v);
 
 		// 2. mean
 
-		// for heads
-
-		sum = sum + pos_h;
-		m = sum/k;
+		sum = sum + pos1;
+		m = sum/10;
 		printf("%f\n", m);
 
-		// for tails
-		sum = sum + pos_t;
-		m = sum/k;
-		printf("%f\n", m);
 	}
 
 	return 0;
