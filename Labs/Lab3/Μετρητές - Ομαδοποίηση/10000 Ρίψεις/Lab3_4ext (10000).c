@@ -71,7 +71,7 @@ int main(int argc, char** argv){
 	printf("%d\n", c10);
 
 	FILE *fp;
-	fp = fopen("counters_1000.txt", "w");
+	fp = fopen("counters_10000.txt", "w");
 
 	fprintf(fp, "%d\n", c1);
 	fprintf(fp, "%d\n", c2);
