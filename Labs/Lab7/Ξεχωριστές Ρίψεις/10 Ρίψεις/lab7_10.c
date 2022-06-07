@@ -82,7 +82,7 @@ int main(int argc, char** argv){
 	FILE *fp2;
 	fp2 = fopen("walkers2.txt", "w");
 	
-	for(j=0; j<=10; j++){
+	for(j=0; j<=1000; j++){
 		x = rand()%10+1;
 		printf("Random number result is: %d\n", x);
 
