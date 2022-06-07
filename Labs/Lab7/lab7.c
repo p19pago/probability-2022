@@ -44,6 +44,10 @@ int main(int argc, char** argv){
 	//subquery 1
 
 	srand(time(NULL));
+	
+	FILE *fp1;
+	fp1 = fopen("walkers1.txt", "w");
+	
 	for(i=0; i<=10; i++){
 		x = rand()%10+1;
 		printf("Random number result is: %d\n", x);
@@ -54,6 +58,7 @@ int main(int argc, char** argv){
 			s1 = rw[pos1];
 
 			printf("%d\n", s1);
+			fprintf(fp1, "%d\n", pos1);
 
 		}
 
@@ -63,20 +68,20 @@ int main(int argc, char** argv){
 			s1 = rw[pos1];
 
 			printf("%d\n", s1);
+			fprintf(fp1, "%d\n", pos1);
 
 		}
 
 		printf("%d\n", pos1);
-
-		FILE *fp1;
-		fp1 = fopen("walkers1.txt", "w");
-
-		fprintf(fp1, "%d\n", pos1);
 	}
 
 	//subquery 2
 
 	srand(time(NULL));
+	
+	FILE *fp2;
+	fp2 = fopen("walkers2.txt", "w");
+	
 	for(j=0; j<=1000; j++){
 		x = rand()%10+1;
 		printf("Random number result is: %d\n", x);
@@ -87,7 +92,7 @@ int main(int argc, char** argv){
 			s2 = rw[pos2];
 
 			printf("%d\n", s2);
-
+			fprintf(fp2, "%d\n", pos2);
 		}
 
 		if(x<5){
@@ -96,15 +101,11 @@ int main(int argc, char** argv){
 			s2 = rw[pos2];
 
 			printf("%d\n", s2);
-
+			fprintf(fp2, "%d\n", pos2);
 		}
 
 		printf("%d\n", pos2);
 
-		FILE *fp2;
-		fp2 = fopen("walkers2.txt", "w");
-
-		fprintf(fp2, "%d\n", pos2);
 	}
 
 	//subquery 3
