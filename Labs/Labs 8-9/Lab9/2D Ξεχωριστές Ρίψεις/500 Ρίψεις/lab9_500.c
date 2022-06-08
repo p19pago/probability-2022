@@ -10,6 +10,8 @@ int x;
 int y;
 int rw[1000][1000]={0,0};
 
+int s;
+
 //variables for subquery 1
 int pos1; //position registered for our walker in x
 int i; //counter for first loop
@@ -31,19 +33,38 @@ int pos_t; //position for Tails
 int k; //counter for third loop, outer loop
 int l; //counter for fourth loop, inner loop
 
-//same subquery. Variables for mean and variance.
+//same subquery. Variables for mean and variance - no heads or tails used
 double var;
 double mn;
+double sqdiff; //squares difference in total for both positions 1 and 2
+int sum;
 
-//variables for sum and squares difference. (used in variance)
-int sum_h = 0; //sum for heads
-int sum_t = 0; //sum for tails
-double sqdiff_h = 0; //squares difference variable for heads
-double sqdiff_t = 0; //squares difference variable for tails
+int sum1 = 0; //sum for position 1
+int sum2 = 0; //sum for position 2
+double sqdf1 = 0; //squares difference variable for position 1
+double sqdf2 = 0; //squares difference variable for position 2
+
+double v1; //variance for position 1, separately.
+double v2; //variance for position 1, separately.
+
+double mn1; //mean for position 1, separately.
+double mn2; //mean for position 2, separately.
 
 int main(int argc, char** argv){
 	
 	srand(time(NULL));
+	
+	FILE *fp;
+	fp = fopen("walkers_lab9.txt", "w");
+	
+	//for separate positions into separate files
+	//before the loop
+	
+	FILE *fp1;
+	fp1 = fopen("walkers1_lab9.txt", "w");
+	
+	FILE *fp2;
+	fp2 = fopen("walkers2_lab9.txt", "w");
 	
 	//subqueries 1 and 2, altogether
 	x = rand()%500+1;
@@ -58,18 +79,30 @@ int main(int argc, char** argv){
 			if(x>500 && y>500){
 				pos1 = x+1;
 				pos2 = y;
+				
+				s = rw[pos1][pos2];
+				printf("%d\n", s);
 			}
 			else if(x<500 && y<500){
 				pos1 = x-1;
 				pos2 = y;
+				
+				s = rw[pos1][pos2];
+				printf("%d\n", s);
 			}
 			else if(x<500 && y>500){
 				pos1 = x;
 				pos2 = y+1;
+				
+				s = rw[pos1][pos2];
+				printf("%d\n", s);
 			}
 			else if(x>500 && y<500){
 				pos1 = x;
 				pos2 = y-1;
+				
+				s = rw[pos1][pos2];
+				printf("%d\n", s);
 			}
 		}
 		
@@ -80,65 +113,21 @@ int main(int argc, char** argv){
 	printf("%d\n", pos1);
 	printf("%d\n", pos2);
 	
-	FILE *fp;
-	fp = fopen("walkers_lab9.txt", "w");
+	//for the main file "walkers_lab9.txt" 
+	//they are printed after the loop
+	
 	fprintf(fp, "%d\n", pos1);
 	fprintf(fp, "%d\n", pos2);
 	
-	//for separate positions into separate files
-	FILE *fp1;
-	fp1 = fopen("walkers1_lab9.txt", "w");
+	//for the file "walkers1_lab9.txt", addressed to position 1 separately.
+	//it is printed after the loop
+	
 	fprintf(fp1, "%d\n", pos1);
 	
-	FILE *fp2;
-	fp2 = fopen("walkers2_lab9.txt", "w");
+	//for the file "walkers2_lab9.txt", addressed to position 2 separately.
+	//it is printed after the loop
+	
 	fprintf(fp2, "%d\n", pos2);
-	
-	//subquery 3
-	
-	//heads
-	res_h = rand()%500 +1;
-	printf("Random integer number: %d\n", res_h);
-			
-	//tails
-	res_t = rand()%500 +1;
-	printf("Random integer number: %d\n", res_t);
-	
-	for(k=0; k<=500; k++){
-		for (l=0; l<=500; l++){
-			
-			if (res_h>70 && res_t<30){
-				pos_h = res_h + 1;
-				pos_t = res_t;
-				h++;
-			}
-			else if(res_h<70 && res_t>30){
-				pos_h = res_h;
-				pos_t = res_t + 1;
-				t++;
-			}
-		}
-		
-		printf("%d\n", pos_h);
-		printf("%d\n", pos_t);
-		
-		//for heads
-		sum_h = sum_h + pos_h;
-		sqdiff_h = sqdiff_h + (pos_h - mn) * (pos_h - mn);
-		
-		//for tails
-		sum_t = sum_t + pos_t;
-		sqdiff_t = sqdiff_t + (pos_t - mn) * (pos_t - mn);
-		
-		//mean for both heads and tails.
-		mn = (sum_h + sum_t)/500;
-		printf("%f\n", mn);
-		
-		//variance for both heads and tails.		
-		var = (sqdiff_h + sqdiff_t)/500;
-		printf("%f\n", var);
-		
-	}
-	
+
 	return 0;
 }
