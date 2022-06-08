@@ -67,10 +67,10 @@ int main(int argc, char** argv){
 	fp2 = fopen("walkers2_lab9.txt", "w");
 	
 	//subqueries 1 and 2, altogether
-	x = rand()%1000+1;
+	x = rand()%10+1;
 	printf("Random number result is (for x variable): %d\n", x);
 	
-	y = rand()%1000+1;
+	y = rand()%10+1;
 	printf("Random number result is (for y variable): %d\n", y);
 	
 	for(i=0; i<=10; i++){
