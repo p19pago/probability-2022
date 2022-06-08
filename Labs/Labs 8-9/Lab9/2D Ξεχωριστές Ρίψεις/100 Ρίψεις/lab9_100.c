@@ -20,36 +20,6 @@ int i; //counter for first loop
 int j; //counter for second loop
 int pos2; //position registered for our walker in y
 
-//variables for subquery 3
-int h = 0; // counter for Heads
-int t = 0; // counter for Tails
-
-int res_h; //expected result for heads experiment
-int res_t; //expected result for tails experiment
-
-int pos_h; //position for Heads
-int pos_t; //position for Tails
-
-int k; //counter for third loop, outer loop
-int l; //counter for fourth loop, inner loop
-
-//same subquery. Variables for mean and variance - no heads or tails used
-double var;
-double mn;
-double sqdiff; //squares difference in total for both positions 1 and 2
-int sum;
-
-int sum1 = 0; //sum for position 1
-int sum2 = 0; //sum for position 2
-double sqdf1 = 0; //squares difference variable for position 1
-double sqdf2 = 0; //squares difference variable for position 2
-
-double v1; //variance for position 1, separately.
-double v2; //variance for position 1, separately.
-
-double mn1; //mean for position 1, separately.
-double mn2; //mean for position 2, separately.
-
 int main(int argc, char** argv){
 	
 	srand(time(NULL));
